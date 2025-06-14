@@ -9,7 +9,7 @@ struct Args {
     #[arg (short, long, help="add, del, done, edit", default_value="list")]
     action: String,
 
-    #[arg (short, long, help = "task name")]
+    #[arg (short, long, help = "task name", required_if_eq("action", "add"))]
     task: Option<String>,
 
     #[arg (short, long, help = "task id")]
@@ -42,6 +42,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 save_tasks(&task_list)?;
             } else {
                 eprintln!("{}\n", format!("You must provide an ID to delete.").red().bold());
+                println!("Usage: --action del --id <id>\n");
             }
             list_tasks(&task_list)?;
         },
@@ -52,6 +53,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 save_tasks(&task_list)?;
             } else {
                 eprintln!("{}\n", format!("You must provide an ID to mark done.").red().bold());
+                println!("Usage: --action done --id <id>\n");
             }
             list_tasks(&task_list)?;
         },
@@ -62,6 +64,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 save_tasks(&task_list)?;
             } else {
                 eprintln!("{}\n", format!("You must provide an ID with -i or --id and New Name with -n or --name to edit the name.").red().bold());
+                println!("Usage: --action edit --id <id> --name <new_name>\n");
             }
             list_tasks(&task_list)?;
         }

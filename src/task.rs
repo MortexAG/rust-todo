@@ -50,6 +50,7 @@ pub fn delete_task(task_id: u32, task_list: &mut TaskList) -> Result<(), Box<dyn
     task_list.tasks.retain(|task| task.id != task_id);
     if task_list.tasks.len() == original_len {
         println!("{}\n", format!("No Task With ID {} found.", task_id).red().bold());
+        println!("Usage: --action del --id {}", task_id);
     }else {
         eprintln!("{}\n", format!("Deleted Task With ID {}.", task_id).green());
         //save_tasks(&task_list)?;
@@ -72,6 +73,7 @@ pub fn mark_done(task_id: u32, task_list: &mut TaskList) -> Result<(), Box<dyn E
     }
     if !found {
         println!("{}\n", format!("No Task With ID {} found.", task_id).red().bold());
+        println!("Usage: --action done --id {}", task_id);
     }//else {
         //save_tasks(&task_list)?;
     //}
@@ -96,6 +98,7 @@ pub fn edit_name(name: &str, task_id: u32, task_list: &mut TaskList) -> Result<(
     }else {
         //save_tasks(&task_list)?;
         println!("{}\n", format!("Changed Task {} to {}", old_name, name).green().bold());
+        println!("Usage: --action edit --id {} --name <new_name>", task_id);
         }
     Ok(())
 }
