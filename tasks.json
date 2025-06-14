@@ -1,0 +1,11 @@
+{
+  "next_id": 2,
+  "tasks": [
+    {
+      "id": 1,
+      "uuid": "51ee6778-695f-4e1f-b8e7-94059ba60367",
+      "name": "wow",
+      "done": false
+    }
+  ]
+}
